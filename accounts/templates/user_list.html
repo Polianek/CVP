@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <title>Example Channels</title>
+  {% load static %}
+  <!-- <script src="{% static "channels/js/websocketbridge.js" %}"></script> -->
+</head>
+<body>
+  <div class="container">
+    <br>
+    {% block content %}{% endblock content %}
+  </div>
+
+  <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const webSocketBridge = new WebSocket('ws://' + window.location.host + '/users/');
+      // webSocketBridge.connect('/ws/');
+      // webSocketBridge.listen(function(action, stream) {
+      //   console.log("RESPONSE:", action, stream);
+      // })
+      document.ws = webSocketBridge; /* for debugging */
+    })
+    </script>
+  <!-- <script>
+  var socket = new WebSocket('ws://' + window.location.host + '/users/');
+
+  socket.onopen = function open() {
+    console.log('WebSockets connection created.');
+  };
+
+  if (socket.readyState == WebSocket.OPEN) {
+    socket.onopen();
+  }
+</script> -->
+</body>
+</html>

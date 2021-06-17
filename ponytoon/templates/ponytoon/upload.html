@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% include "ponytoon/html_detail/head.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/form.css' %}">
+</head>
+<body>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<!-- Navbar -->
+{% include "ponytoon/html_detail/navbar.html" %}
+<!-- End navbar -->
+
+{% include "ponytoon/html_detail/alerts.html" %}
+
+<!-- Windows -->
+<section>
+	<p class="form-title">Upload your art</p>
+	<form class="site-form" action="{% url 'upload' %}" method="post" autocomplete="off" enctype="multipart/form-data">
+		{% csrf_token %}
+		{% load widget_tweaks %}
+		<div class="form-group">
+			<label>Description</label>
+			{% render_field form.title class+="form-control" %}
+		</div>
+		<div class="form-group">
+			<label>Art</label>
+			{% render_field form.pic class-="form-control" %}
+		</div>
+		<div class="form-group">
+			<label>Tags</label>
+			{% render_field form.tags class+="form-control" %}
+		</div>
+		<input type="submit" class="btn" value="Upload">
+	</form>
+
+<!-- Footer -->
+{% include "ponytoon/html_detail/footer.html" %}
+<!-- End footer -->
+
+
+
+    <!-- ALL OF YOUR SITE CODE HERE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+	<!-- Choose tags without ctrl script -->
+	<script>
+    var mediaQuery = window.matchMedia('(min-width: 902px)');
+    autoCTRL(mediaQuery);
+    mediaQuery.addListener(autoCTRL);
+    function autoCTRL(ac) {
+        if (mediaQuery.matches){
+    	$("select").mousedown(function(e){
+    		e.preventDefault();
+
+    		var select = this;
+    		var scroll = select.scrollTop;
+
+    		e.target.selected = !e.target.selected;
+
+    		setTimeout(function(){select.scrollTop = scroll;}, 0);
+
+    		$(select).focus();
+    	}).mousemove(function(e){e.preventDefault()});
+        }
+    }
+	</script>
+</body>
+</html>

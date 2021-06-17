@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% include "ponytoon/html_detail/head.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/slider.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/tiles.css' %}">
+</head>
+<body>
+<!-- Navbar -->
+{% include "ponytoon/html_detail/navbar.html" %}
+<!-- End navbar -->
+
+{% include "ponytoon/html_detail/alerts.html" %}
+
+<section class="container-flex" id="slider">
+    <div id="title">
+        <p>New Categories</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 heroSlider-fixed">
+            <div class="overlay"></div>
+            <!-- Slider -->
+            <div class="slider responsive">
+                <div class="imageBox">
+                    <img src="/media/2.jpg" alt="">
+                </div>
+                <div class="imageBox">
+                    <img src="/media/4.jpg" alt="" />
+                </div>
+                <div class="imageBox">
+                    <img src="/media/5.jpg" alt="" />
+                </div>
+                <div class="imageBox">
+                    <img src="/media/6.jpg" alt="" />
+                </div>
+                <div class="imageBox">
+                    <img src="/media/7.jpg" alt="" />
+                </div>
+                <div class="imageBox">
+                    <img src="http://placehold.it/200x150" alt="" />
+                </div>
+                <div class="imageBox">
+                    <img src="http://placehold.it/200x150" alt="" />
+                </div>
+                <div class="imageBox">
+                    <img src="http://placehold.it/200x150" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tiles">
+    <div class="container-fluid pb-4">
+        <div class="card-columns">
+            {% for image in images %}
+            <div class="card">
+                <a href="/arts/{{ image.pic_name }}">
+                    <img class="card-img" src="{{ MEDIA_URL }}{{ image.pic }}" alt="Card image cap"/>
+                </a>
+                <div class="d-flex flex-wrap-reverse testBox">
+                    <a href="/arts/{{ image.pic_name }}"><span color="#fff !important">More</span></a>
+                </div>
+                <div class="row d-flex align-items-center likeBox">
+                    <div class="col-6">
+                        <form method="post" class="rep-pos-gal" data-pk="{{ image.pic_name }}">{% csrf_token %}
+                                <button type="submit" class="heart
+                                {% for xx in image.votes.all.values %}
+                                    {% if xx.user_id == request.user.id and xx.comment_id is None and xx.value == True %}heart-blast{% endif %}
+                                {% endfor %}
+                                " style="border: none;"></button>
+                            <input type="hidden" name="image_pk" value="{{ image.pic_name }}">
+                        </form>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center align-items-center likesAmount" data-pk="{{ image.pic_name }}">
+                        {{ image.reputation }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript">
+            var heart_blast_js = "{{ upload.pic_name }}";
+            var is_authenticated = '{{ request.user.is_authenticated|yesno:"true,false" }}';
+        </script>
+        <script type="text/javascript" src="{% static 'personal/ptjs/universal.js' %}"></script>
+        <script type="text/javascript">
+        $('form.rep-pos-gal').each((_, form) => {
+          const $form = $(form);
+          const pk = $form.data('pk');
+          const csrf = $form.find('input[name=csrfmiddlewaretoken]').val();
+          const $likesAmount = $(`.likesAmount[data-pk="${pk}"]`);
+
+          $form.submit((event) => {
+            event.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: "/arts/" + pk + "/pos",
+                data: {
+                  csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+              })
+              .done((data) => {
+                $likesAmount.text(data.repp);
+              });
+          });
+        });
+        $(".heart").on("click", function () {
+            if (is_authenticated == "true") $(this).toggleClass("heart-blast");
+        });
+        </script>
+
+<!-- Footer -->
+{% include "ponytoon/html_detail/footer.html" %}
+<!-- End footer -->
+
+
+    <!-- ALL OF YOUR SITE CODE HERE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+        <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+<script type="text/javascript" src="{% static 'personal/ptjs/slick-1.8.1/slick/slick.min.js' %}"></script>
+
+    <!-- ADDITIONAL JS HERE -->
+    <!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
+    <script type="text/javascript" src="{% static 'personal/ptjs/tiles.js' %}"></script>
+</body>
+</html>

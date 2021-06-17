@@ -1,0 +1,25 @@
+<body style="background: #333; color: #fff;">
+    {% if reputation %}
+    <div style="height: auto; width: 450px; border: 1px #fff solid; padding: 5.5px;">
+        {% for rep in reputation %}
+            {{ rep }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if arts %}
+    <div style="height: auto; width: 450px; border: 1px #fff solid; padding: 5.5px;">
+        {% for art in arts %}
+            {{ art }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if comments %}
+    <div style="height: auto; width: 450px; border: 1px #fff solid; padding: 5.5px;">
+        {% for comment in comments %}
+            {{ comment }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        {% load static %}
+        {% include "ponytoon/html_detail/head.html" %}
+        <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+            />
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/detail_view.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/belowDetails.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/comments.css' %}">
+</head>
+
+<body>
+    {% include "ponytoon/html_detail/navbar.html" %}
+
+    <!-- ------------------- A D V E R T I S E M E N T ------------------- -->
+<!-- <div class="d-lg-none d-flex align-items-center justify-content-center py-1 advertArea1">
+    <div class="d-inline-block d-lg-none advertBox1"></div>
+</div> -->
+<!-- --------------------------------------------------------- -->
+<section class="mt-lg-4" id="detail_view">
+
+    <div class="container-fluid d-flex flex-row" id="detail_view_container">
+
+        <div class="d-none d-lg-block banerBox">
+            <!-- <div class="baner d-flex" id="baner1"></div> -->
+        </div>
+
+        <div class="container-fluid mx-auto imageDetailArea">
+            <div class="row h-100 d-flex align-items-center px-0 px-lg-3" id="imageDetailRow">
+                <div class="d-none d-sm-block countingArea">
+                    <div class="plus_and_counting">
+                        <form method="post" id="rep-pos-form" class="rep-pos-form">{% csrf_token %}
+                                <button type="submit" class="btn
+                                {% for xx in upload.votes.all.values %}
+                                    {% if xx.user_id == request.user.id and xx.comment_id is None and xx.value == True %}btn-success{% endif %}
+                                {% endfor %}
+                                plus">+</button>
+                        </form>
+                        <div class="count text-center d-flex align-items-center" id="count-rep">
+                            <span>{{ upload.reputation }}</span>
+                        </div>
+                        <form method="post" id="rep-neg-form" class="rep-neg-form">{% csrf_token %}
+                                <button type="submit" class="btn
+                                {% for xx in upload.votes.all.values %}
+                                    {% if xx.user_id == request.user.id and xx.comment_id is None and xx.value == False %}btn-danger{% endif %}
+                                {% endfor %}
+                                minus">-</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mx-auto px-0 px-sm-1 choosedImageArea">
+                    <div class="choosedImageBox">
+                        <img src="{{ MEDIA_URL }}{{ upload.pic }}" alt="" />
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-between mt-1 mt-sm-0 mb-4 mx-4 mx-sm-3 choosedImagePanel">
+
+                    <div class="d-block deleteArea">
+                        <div class="my-2 d-none d-sm-block">Tags:</div>
+                        {% for tag in upload.tags.all %}
+                        <div class="my-2 d-none d-sm-block" id="cmcGroup">
+                            <button type="button" class="btn btn-warning">{{ tag.tag_name }}</button>
+                        </div>
+                        {% endfor %}
+                        <div _ngcontent-jjn-c19="" class="my-2 text-right invisible">Uploaded by:</div>
+                        {% if user.id == upload.author.id %}
+                        <div class="my-2" id="visibility">
+                            <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'arts_visibility' arts=upload.pic_name %}'">
+                                {% if user.id == 1 %}Toggle visibility{% else %}Delete image{% endif %}
+                            </button>
+                        </div>
+                        {% endif %}
+                        {% if user.id == 1 %}
+                		{% if user.is_authenticated %}
+                                        <div class="my-2" id="deleteAdmin">
+                                            <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'arts_delete' arts=upload.pic_name %}'">
+                                                Delete (admin)
+                                            </button>
+                                        </div>
+                                {% endif %}
+                	{% endif %}
+                    </div>
+
+                    <!-- ----------------- M O B I L E ----------------- -->
+                    <div class="d-block d-sm-none countingAreaMobile">
+                        <div class="d-flex flex-row-reverse plus_and_counting">
+                            <form method="post" id="rep-pos-form" class="rep-pos-form-mobile">{% csrf_token %}
+                                <!-- <button type="submit" class="btn btn-success p-0 plus">+</button> -->
+                                <button type="submit" class="btn
+                                {% for xx in upload.votes.all.values %}
+                                    {% if xx.user_id == request.user.id and xx.comment_id is None and xx.value == True %}btn-success{% endif %}
+                                {% endfor %}
+                                p-0 plus plus-hor">+</button>
+                            </form>
+                            <div class="count text-center d-flex align-items-center" id="count-rep">
+                                <span>{{ upload.reputation }}</span>
+                            </div>
+                            <form method="post" id="rep-neg-form" class="rep-neg-form-mobile">{% csrf_token %}
+                                <button type="submit" class="btn
+                                {% for xx in upload.votes.all.values %}
+                                    {% if xx.user_id == request.user.id and xx.comment_id is None and xx.value == False %}btn-danger{% endif %}
+                                {% endfor %}
+                                p-0 minus minus-hor">-</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="d-block uploaded_and_visibility">
+                        <div class="my-2 text-right">Uploaded by:</div>
+
+                        <div class="my-2 text-right" id="uploadedBy">
+                            <button type="button" class="btn btn-success ml-auto" onclick="window.location.href='{% url 'accounts:profileid' id=upload.author.id %}'">
+                                {{ upload.author }}
+                            </button>
+                        </div>
+                        <br>
+                        <div class="my-2 text-right">
+                            <a href="{{ MEDIA_URL }}{{ upload.pic }}">
+                                <button type="button" class="btn ml-auto">
+                                    Open full size
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- --------------------------------------------------- -->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="d-none d-lg-block banerBox">
+            <!-- <div class="baner" id="baner2"></div> -->
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid" id="belowDetails">
+    <section class="mx-auto" id="description">
+        <p>{{ upload.title | linebreaks }}</p>
+
+        {% if user.id == upload.author.id %}
+        <div class="form-group mb-0 mr-3">
+            <a href="edit"><label class="btn btn-primary">
+                Edit image
+            </label></a>
+        </div>
+        {% endif %}
+
+    </section>
+</div>
+
+<hr class="mt-5" id="hrAboveComments" />
+<div class="comment_block">
+    <!-- used by #{user} to create a new comment -->
+    {% if request.user.is_authenticated %}
+    <div class="create_new_comment">
+        <!-- current #{user} avatar -->
+        <div class="user_avatar">
+            <img
+                src="{% if request.user.is_authenticated %}{{ MEDIA_URL }}{{ user.avatar }}{% endif %}"
+            />
+            <!-- https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg -->
+        </div>
+        <!-- the input field -->
+        <div class="input_comment">
+                <form method="post" action="{% url 'arts_comment' arts=upload.pic_name %}">
+                {% csrf_token %}
+                        {{ form.contents }}
+                        <!-- <input type="text" placeholder="Add comment.." /> -->
+                        <div class="send">
+                        <button type="submit" class="btn pr-3" name="CommentCreateView">
+                                <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+            </form>
+        </div>
+        </div>
+        {% endif %}
+    <!-- new comment -->
+    <div class="new_comment" {% if request.user.is_authenticated == False %}style="border: none;"{% endif %}>
+        <!-- build comment -->
+        <ul class="user_comment">
+            <!-- current #{user} avatar -->
+            {% include "ponytoon/pages/comment_page.html" %}
+                <!-- start user replies -->
+            <li>
+                <div class="row mw-100 mx-auto">
+                <!-- current #{user} avatar -->
+                <div class="user_avatar">
+                    <img
+                        src="https://s3.amazonaws.com/uifaces/faces/twitter/manugamero/73.jpg"
+                    />
+                </div>
+                <!-- the comment body -->
+                <div class="comment_body">
+                    <div class="replied_to">
+                        <p>
+                            <span class="user">John Smith:</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a gravida sem, in venenatis sapien. Etiam vitae posuere orci, nec fermentum ipsum. Donec scelerisque tellus elit, eget iaculis massa egestas a. Cras ultricies, quam eu dignissim mattis, magna erat aliquam dui, finibus imperdiet nisl nunc at sapien. Quisque id dui.
+                        </p>
+                    </div>
+                    That's exactly what I was thinking!
+                </div>
+                <!-- comments toolbar -->
+                <div class="ml-auto comment_toolbar">
+                    <!-- inc. date and time -->
+                    <div class="comment_details">
+                        <ul>
+                            <li>14:52</li>
+                            <li>04/01/2015</li>
+                            <li>
+                                <span class="user">Andrew Johnson</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- inc. share/reply and love -->
+                    <div class="comment_tools">
+                        <ul>
+                            <li>
+                                <span class="edit">
+                                    edit
+                                </span>
+                            </li>
+                            <li>
+                                <span class="report">
+                                    report
+                                </span>
+                            </li>
+                            <li>
+                                <em class="fas fa-heart love">
+                                    <span class="love_amt">4</span>
+                                </em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </li>
+            <!-- start user replies -->
+            <li>
+                <div class="row mw-100 mx-auto">
+                <!-- current #{user} avatar -->
+                <div class="user_avatar">
+                    <img
+                        src="https://s3.amazonaws.com/uifaces/faces/twitter/ManikRathee/73.jpg"
+                    />
+                </div>
+                <!-- the comment body -->
+                <div class="comment_body">
+                    <div class="replied_to">
+                        <p>
+                            <span class="user">John Smith:</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a gravida sem, in venenatis sapien. Etiam vitae posuere orci, nec fermentum ipsum. Donec scelerisque tellus elit, eget iaculis massa egestas a. Cras ultricies, quam eu dignissim mattis, magna erat aliquam dui, finibus imperdiet nisl nunc at sapien. Quisque id dui. Ifinibus imperdiet nisl nunc at sapien. Quisque id dui.
+                        </p>
+                    </div>
+                    Finally someone who actually gets it!
+                    <div class="replied_to">
+                        <p>
+                            <span class="user">Andrew Johnson:</span>That's exactly what I was
+                            thinking!
+                        </p>
+                    </div>
+                    That's awesome!
+                </div>
+                <!-- comments toolbar -->
+                <div class="ml-auto comment_toolbar">
+                    <!-- inc. date and time -->
+                    <div class="comment_details">
+                        <ul>
+                            <li>14:59</li>
+                            <li>04/01/2015</li>
+                            <li>
+                                <span class="user">Simon Gregor</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- inc. share/reply and love -->
+                    <div class="comment_tools">
+                        <ul>
+                            <li>
+                                <span class="edit">
+                                    edit
+                                </span>
+                            </li>
+                            <li>
+                                <span class="report">
+                                    report
+                                </span>
+                            </li>
+                            <li>
+                                <em class="fas fa-heart love">
+                                    <span class="love_amt">4039</span>
+                                </em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <!-- Site footer -->
+{% include "ponytoon/html_detail/footer.html" %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static 'personal/js/el-pagination.js' %}"></script>
+
+    <script>$.endlessPaginate({
+            paginateOnScroll: true,
+            paginateOnScrollMargin: 20
+        });</script>
+
+        <script type="text/javascript">
+        $(document).on('submit','#rep-pos-form',function(e){
+			e.preventDefault();
+
+			$.ajax({
+				type: 'POST',
+				url: 'pos',
+				data:{
+					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+				},
+			})
+            .done(function(data) {
+                $('#count-rep span').text(data.repp);
+                $(".rep-pos-form").load(document.URL + " .rep-pos-form > *");
+                $(".rep-pos-form-mobile").load(document.URL + " .rep-pos-form-mobile > *");
+                $(".rep-neg-form").load(document.URL + " .rep-neg-form > *");
+                $(".rep-neg-form-mobile").load(document.URL + " .rep-neg-form-mobile > *");
+            });
+		});
+        $(document).on('submit','#rep-neg-form',function(e){
+			e.preventDefault();
+
+			$.ajax({
+				type: 'POST',
+				url: 'neg',
+				data:{
+					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+				},
+			})
+            .done(function(data) {
+                $('#count-rep span').text(data.repp);
+                $(".rep-pos-form").load(document.URL + " .rep-pos-form > *");
+                $(".rep-pos-form-mobile").load(document.URL + " .rep-pos-form-mobile > *");
+                $(".rep-neg-form").load(document.URL + " .rep-neg-form > *");
+                $(".rep-neg-form-mobile").load(document.URL + " .rep-neg-form-mobile > *");
+            });
+		});
+        $('form.rep-pos-com').each((_, form) => {
+          const $form = $(form);
+          const pk = $form.data('pk');
+          const csrf = $form.find('input[name=csrfmiddlewaretoken]').val();
+          const $loveAmt = $(`.love_amt[data-pk="${pk}"]`);
+
+          $form.submit((event) => {
+              event.preventDefault();
+
+              $.ajax({
+  				type: 'POST',
+  				url: "/comments/" + pk + "/reputation/{{ upload.pic_name|escapejs }}",
+  				data:{
+  					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+  				},
+  			})
+                .done((data) => {
+                  $loveAmt.text(data.comment_reputation);
+                });
+          });
+        });
+
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var heart_blast_js = "{{ upload.pic_name }}";
+        var is_authenticated = '{{ request.user.is_authenticated|yesno:"true,false" }}';
+    </script>
+    <script type="text/javascript" src="{% static 'personal/ptjs/heart_work.js' %}"></script>
+    <script type="text/javascript" src="{% static 'personal/ptjs/universal.js' %}"></script>
+</body>
+</html>

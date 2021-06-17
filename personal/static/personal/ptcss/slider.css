@@ -1,0 +1,94 @@
+#slider {
+	width: 80%;
+	margin: auto;
+	margin-top: 1em;
+}
+#slider #title {
+	font-size: 2.5em;
+}
+.imageBox img {
+	object-fit: cover;
+	width: 100% !important;
+}
+.slick-dots {
+	text-align: center;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+.slick-dots li {
+	display: inline-block;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+#slider li button {
+	text-shadow: none;
+	color: transparent;
+	background-color: #999;
+	border: none;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+}
+/* Custom Arrow */
+.prev {
+	color: #999;
+	position: absolute;
+	top: 38%;
+	left: -2em;
+	font-size: 1.5em;
+}
+.prev:hover {
+	cursor: pointer;
+	color: black;
+}
+.next {
+	color: #999;
+	position: absolute;
+	top: 38%;
+	right: -2em;
+	font-size: 1.5em;
+}
+.next:hover {
+	cursor: pointer;
+	color: black;
+}
+#slider li button {
+	background: transparent;
+}
+.slick-dots li button:hover {
+	background-color: black;
+}
+.slick-dots .slick-active button {
+	background-color: black;
+}
+
+@media screen and (max-width: 800px) {
+	.next {
+		display: none !important;
+	}
+}
+@media (max-width: 575.98px) {
+	.imageBox img {
+		height: 145px;
+	}
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+	.imageBox img {
+		height: 135px;
+	}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.imageBox img {
+		height: 160px;
+	}
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.imageBox img {
+		height: 175px;
+	}
+}
+@media (min-width: 1200px) {
+	.imageBox img {
+		height: 255px;
+	}
+}

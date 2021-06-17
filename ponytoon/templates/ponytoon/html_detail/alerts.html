@@ -1,0 +1,13 @@
+{% if request.user.id == 1 %}
+{% if report_warning > 0 %}
+<div class="alert alert-warning col-md-6 mt-md-3 mx-md-auto" role="alert">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+Masz {{ report_warning }} {% if report_warning == 1 %}zgłoszenie{% elif report_warning < 5 %}zgłoszenia{% else %}zgłoszeń{% endif %}! Kliknij <a href="{% url 'adminpanel:reports' %}" class="alert-link">tutaj</a> żeby na nie odpowiedzieć.</div>
+{% endif %}
+
+{% if suggestions_warning > 0 %}
+<div class="alert alert-info col-md-6 mt-md-3 mx-md-auto" role="alert">
+    <i class="fa fa-question" aria-hidden="true"></i>&nbsp;
+Masz {{ suggestions_warning }} {% if suggestions_warning == 1 %}sugestię{% elif suggestions_warning < 5 %}sugestie{% else %}sugestii{% endif %}! Kliknij <a href="{% url 'adminpanel:suggestions' %}" class="alert-link">tutaj</a> żeby na nie odpowiedzieć.</div>
+{% endif %}
+{% endif %}

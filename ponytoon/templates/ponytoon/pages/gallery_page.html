@@ -1,0 +1,28 @@
+            {% load el_pagination_tags %}
+            {% lazy_paginate 8,4 images %}
+            {% for image in images %}
+                <div class="card">
+                    <a href="/arts/{{ image.pic_name }}"><img class="card-img" src="{{ MEDIA_URL }}{{ image.pic }}" alt="Card image" /></a>
+                    <div class="d-flex flex-wrap-reverse testBox">
+                        <a href="/arts/{{ image.pic_name }}"><span color="#fff !important">More</span></a>
+                    </div>
+                    <div class="row d-flex align-items-center likeBox">
+                        <div class="col-6">
+
+                            <form method="post" class="rep-pos-gal" data-pk="{{ image.pic_name }}">{% csrf_token %}
+                                    <button type="submit" class="heart
+                                    {% for xx in image.votes.all.values %}
+                                        {% if xx.user_id == request.user.id and xx.comment_id is None and xx.value == True %}heart-blast{% endif %}
+                                    {% endfor %}
+                                    " style="border: none;"></button>
+                                <input type="hidden" name="image_pk" value="{{ image.pic_name }}">
+                            </form>
+
+                        </div>
+                        <div class="col-6 d-flex justify-content-center align-items-center likesAmount" data-pk="{{ image.pic_name }}">
+                            {{ image.reputation }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    {% show_more "Show more" "Drawing.." %}

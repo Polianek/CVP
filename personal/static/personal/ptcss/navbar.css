@@ -1,0 +1,123 @@
+a {
+	color: inherit;
+}
+a:hover {
+	text-decoration: none;
+	color: #007bff;
+}
+nav {
+	background: #171717;
+	box-shadow: 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+	z-index: 100;
+}
+.upload {
+	height: calc(1.5em + 0.75rem + 2px);
+	border-radius: 30px;
+	font-size: 0.9em;
+}
+.logoutButton {
+	height: calc(1.5em + 0.75rem + 2px);
+	width: calc(1.5em + 0.75rem + 2px);
+	border-radius: 50%;
+	font-size: 0.9em;
+}
+.btn-circle {
+	padding: 6px 0px;
+}
+.navProfile {
+	display: inline-block;
+	width: 9em;
+	line-height: 1.5em;
+}
+.navProfile img {
+	height: 2.4em;
+}
+.userName {
+	line-height: 90%;
+}
+.userName #userLikes {
+	font-size: 0.9em;
+}
+.dropdown-item {
+	padding: 0.25rem 1rem;
+}
+.dropdown img {
+	width: 30px;
+	height: auto;
+}
+#logout_icon img {
+	width: 1.5em;
+}
+#upload-icon,
+#upload-icon i {
+	line-height: 1.5em;
+}
+div.mdl-layout__drawer > nav.mdl-navigation > a.mdl-navigation__link {
+	display: inline-flex;
+	vertical-align: middle;
+}
+.logoutButton i {
+	color: #dc3545;
+	font-size: 1.5em;
+}
+.search-form {
+	border-radius: 30px !important;
+	box-shadow: none;
+}
+.search-btn {
+	cursor: pointer;
+}
+.form-control {
+	border: none;
+}
+.form-control:focus {
+	box-shadow: none;
+}
+.search-btn {
+	box-shadow: inherit;
+}
+.input-group {
+	width: 25em !important;
+	max-width: 25em;
+	border: 1px solid #ced4da;
+	border-radius: 30px !important;
+	background-color: #fff;
+
+	overflow: hidden;
+}
+#profilePNG {
+	max-width: 40px;
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.form-inline {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.upload {
+		position: absolute;
+		left: calc(50% + 11.25em);
+	}
+	.input-group {
+		width: 18em !important;
+	}
+}
+@media (min-width: 1200px) {
+	.form-inline {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.upload {
+		position: absolute;
+		left: calc(50% + 14.5em);
+	}
+}
+@media only screen and (max-device-width: 500px) {
+	.input-group {
+		width: 100% !important;
+	}
+}

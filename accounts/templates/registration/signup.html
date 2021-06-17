@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+	{% include "ponytoon/html_detail/head.html" %}
+	<link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/form.css' %}">
+</head>
+<body>
+
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<!-- Navbar -->
+{% include "ponytoon/html_detail/navbar.html" %}
+<!-- End navbar -->
+
+<div class="auth-wrap">
+<p class="form-title">Sign up</p>
+<form class="site-form" method="post" action="{% url 'accounts:signup' %}" autocomplete="off" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% load widget_tweaks %}
+	<div class="form-group">
+		<label>Username</label>
+		{% render_field form.username class+="form-control" %}
+	</div>
+	<div class="form-group">
+		<label>Email</label>
+		{% render_field form.email class+="form-control" %}
+	</div>
+	<div class="form-group">
+		<label>Password</label>
+		{% render_field form.password1 class+="form-control" %}
+	</div>
+	<div class="form-group">
+		<label>Password confirmation</label>
+		{% render_field form.password2 class+="form-control" %}
+	</div>
+	<div class="form-group">
+		{% render_field form.captcha class+="form-control" %}
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" required value="" id="defaultCheck1">
+		<label class="form-check-label" for="defaultCheck1">Accept <a href="{% url 'privacy' %}">Privacy Policy</a> and <a href="{% url 'terms' %}">Terms &amp; Conditions</a></label>
+		<br><br>By using UnderATail you confirm that you are over 18 years old.
+	</div>
+	<button type="submit" class="btn btn-primary form-submit">Submit</button>
+</form>
+</div>
+
+<!-- Error messaging -->
+{% if form.errors %}
+<div class="error-form"><p>ERROR:</p> {{ form.non_field_errors }}</div>
+<ul>
+	{% for field in form %}
+		{% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+	{% endfor %}
+</ul>
+{% endif %}
+<!--  -->
+<!-- Footer/Error messaging -->
+{% include "ponytoon/html_detail/footer.html" %}
+<!-- End footer -->
+
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="{% static 'personal/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'personal/assets/js/docs.min.js' %}"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="{% static 'personal/assets/js/ie10-viewport-bug-workaround.js' %}"></script>
+	</body>
+</html>
+</body>
+</html>

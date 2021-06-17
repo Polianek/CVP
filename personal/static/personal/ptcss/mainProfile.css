@@ -1,0 +1,97 @@
+#mainProfile {
+	font-size: 1.3em;
+	letter-spacing: 0.04em;
+	background-image: linear-gradient(
+		to right bottom,
+		#222,
+		#252525,
+		#282727,
+		#2b292a,
+		#2e2c2c,
+		#312e2f,
+		#333131,
+		#363334,
+		#383637,
+		#3b3a3a,
+		#3d3d3d,
+		#404040
+	);
+}
+#mainProfile .mainProfileData {
+	color: rgba(255, 255, 255, 0.75);
+}
+#mainProfile .mainProfileData .data {
+	color: rgba(255, 255, 255, 1);
+	font-weight: 700;
+}
+#mainProfile .editProfileArea .editProfileBox {
+	z-index: 5;
+}
+#mainProfile .editProfileArea .editProfileBox button {
+	outline: none;
+}
+#mainProfile .profileImg img {
+	width: 11em;
+	font-size: 1.3em;
+}
+#mainProfile .nicknameBox {
+	font-size: 1.3em;
+	font-weight: 700;
+	letter-spacing: 0.15em;
+	color: rgba(255, 255, 255, 0.9);
+}
+#mainProfile .followArea {
+	transform: translate(0, 50%);
+}
+#mainProfile .followArea .followSpan {
+	letter-spacing: 0.18em;
+}
+#mainProfile .button {
+	display: inline-flex;
+	align-items: center;
+	background: #222;
+	box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 1.8em;
+	padding: 0 3em;
+	color: #fff;
+	font-family: Lato, Arial, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+	will-change: transform;
+}
+#mainProfile .button:hover {
+	background: #404040;
+	box-shadow: 0 4px 17px rgba(0, 0, 0, 0.3);
+	transform: translate3d(0, -2px, 0);
+}
+#mainProfile .button:active {
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+	transform: translate3d(0, 1px, 0);
+}
+.update-avatar {
+	font-size: 64px;
+	cursor: pointer;
+}
+@media (max-width: 575.98px) {
+	#mainProfile {
+		font-size: 1.05em;
+	}
+	#mainProfile .mainProfileData .row {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	#mainProfile .profileImg img {
+		font-size: 1.2em;
+	}
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+	#mainProfile {
+		font-size: 1.15em;
+	}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+	#mainProfile {
+		font-size: 1.22em;
+	}
+}

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        {% load static %}
+        {% include "ponytoon/html_detail/head.html" %}
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/mainProfile.css' %}">
+</head>
+
+<body>
+{% include "ponytoon/html_detail/navbar.html" %}
+
+    <section id="mainProfile">
+        <div class="container-fluid px-0 py-2">
+            <div class="d-flex justify-content-center justify-content-sm-end editProfileArea">
+                <div class="d-none d-sm-block editProfileBox mr-4 mt-4 pr-2 pr-sm-3 pt-2 pt-sm-3">
+                </div>
+                <div class="d-sm-none editProfileBox my-4 py-2">
+                </div>
+            </div>
+        <form method="post" action="{% url 'accounts:profile_edit' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mainProfileData">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center profileImg">
+                            <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center nicknameBox">
+                            <span class="mt-4">{{ user.username }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center speciesBox">
+                            <span class="mt-4">{{ form.species }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-around w-100 mx-0 my-5 py-5">
+                    <div class="col-1 d-none d-sm-block"></div>
+
+                    <div class="col-4 col-sm-3 text-center pr-0 pr-sm-3">
+                        <div class="row h-50">
+                            <div class="col-12 ">Your email</div>
+                        </div>
+                        <div class="row h-50">
+                            <div class="col-12 data mt-3 px-0 px-sm-3">{{ user.email }}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-sm-3 text-center">
+                        <div class="row h-50">
+                            <div class="col-12"><span class="d-none d-sm-inline">Change password</span></div>
+                        </div>
+                        <div class="row h-50">
+                            <div class="col-12 data mt-3"><a href="/accounts/password_change/">Click!</a></div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-sm-3 text-center">
+                        <div class="row h-50">
+                            <div class="col-12"><span class="d-none d-sm-inline">Upload avatar</span></div>
+                        </div>
+                        <div class="row h-50">
+                            <div class="col-12 data mt-2">
+                                <label for="id_avatar" class=""><i class="fas fa-file-upload update-avatar"></i></label>
+                                <input type="file" name="avatar" accept="image/*" id="id_avatar" style="display:none;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1 d-none d-sm-block"></div>
+                </div>
+
+                <div class="row d-flex justify-content-around w-100 mx-0 my-5 py-5">
+                    <div class="col-1 d-none d-sm-block"></div>
+
+                    <div class="col-4 col-sm-3 text-center pr-0 pr-sm-3">
+                        <div class="row h-50">
+                            <div class="col-12 ">Registered</div>
+                        </div>
+                        <div class="row h-50">{% load tz %}
+                          <div class="col-12 data mt-3 px-0 px-sm-3">{{ user.date_joined|timezone:user.timezone.timezone_dj }}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-sm-3 text-center">
+                        <div class="row h-50">
+                            <div class="col-12">Reputation</div>
+                        </div>
+                        <div class="row h-50">
+                            <div class="col-12 data mt-3">{{ reputation }}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 col-sm-3 text-center">
+                        <div class="row h-50">
+                            <div class="col-12"><span class="d-none d-sm-inline">Uploaded </span>Images</div>
+                        </div>
+                        <div class="row h-50">
+                            <div class="col-12 data mt-3">{{ q }}</div>
+                        </div>
+                    </div>
+                    <div class="col-1 d-none d-sm-block"></div>
+                </div>
+
+                <div class="row d-flex justify-content-around w-100 mx-0 my-5 py-5">
+                    <div class="col-4 col-sm-3 text-center">
+                        <div class="row h-50">
+                            <div class="col-12">Timezone</div>
+                        </div>
+                        <div class="row h-50">
+                            <div class="col-12 data mt-3">{{ form.timezone }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="followArea">
+                            <a href="#" class="button py-3">
+                                <span class="followSpan">FOLLOW</span>
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+            <input type="submit" class="btn btn-primary" value="Save changes">
+        	<!-- <button type="submit" class="btn btn-primary">Save Changes</button> -->
+            </div>
+            </form>
+        </div>
+    </section>
+
+{% include "ponytoon/html_detail/footer.html" %}
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- ADDITIONAL JS HERE -->
+    <script type="text/javascript" src="{% static 'personal/ptjs/universal.js' %}"></script>
+</body>
+
+</html>

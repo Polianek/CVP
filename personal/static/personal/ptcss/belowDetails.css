@@ -1,0 +1,33 @@
+#belowDetails {
+	width: 65vw;
+	padding: 0;
+}
+#aboveDesc {
+	border-top-color: #bbb;
+	opacity: 0.5;
+}
+#description {
+	width: 98%;
+}
+#description p {
+	text-indent: 2em;
+	font-size: 1.2em;
+	letter-spacing: 0.02em;
+}
+label {
+	margin-bottom: 0;
+}
+#chooseImage {
+	display: inline-block;
+	height: auto;
+}
+.form-control-file,
+.form-control-range {
+	display: inline-block;
+	width: auto;
+}
+@media (max-width: 575.98px) {
+	#belowDetails {
+		width: 100% !important;
+	}
+}

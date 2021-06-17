@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="{% url 'index' %}">UnderATail</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ml-lg-4 mr-lg-3">
+        <a class="nav-link {% if request.path == "/" %}active{% endif %}" href="{% url 'index' %}">HOME</a>
+      </li>
+      <li class="nav-item {% if "gallery" in request.path %}active{% endif %} mx-lg-3">
+        <a class="nav-link" href="{% url 'gallery' %}">GALLERY</a>
+      </li>
+    </ul>
+
+    <form method='GET' action='/gallery/' id="search-form" class="form-inline py-2 py-lg-0" role="form">
+      <div class="input-group">
+        <input type="text" name='q' class="form-control search-form" maxlength="100" value="{{ request.GET.q }}" autocomplete="off" placeholder="Search">
+        <span class="input-group-btn">
+          <button type="submit" class="btn search-btn" data-target="#search-form"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </form>
+
+    <button type="button" class="btn btn-danger my-2 my-lg-0 upload d-flex align-items-center" data-toggle="tooltip" onclick="window.location.href='{% url 'upload' %}'"
+      data-placement="left" title="Upload art">
+      <span id="upload-icon"><i class="left material-icons">backup</i></span>
+      <span class="d-inline-block d-lg-none d-xl-inline-block pl-2">UPLOAD</span>
+    </button>
+
+    <div class="dropdown-divider my-4"></div>
+
+    <div class="navProfile mr-lg-4">
+    {% if user.is_authenticated %}
+    <div class="row mr-0 d-flex align-items-center">
+        <div class="col-4 pr-0 text-right">
+            <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="" id="profilePNG">
+        </div>
+        <a href="{% url 'accounts:profile' %}" class="col-8 pl-1 userName"><div class="col-10 pl-1 userName">
+            <div class="row">
+                <div class="col-12">
+                    {{ user.username|truncatechars_html:12 }}
+                </div>
+              </div>
+            <div class="row" id="userLikes">
+                <div class="col-12">
+                    {% if user_reputation is not None %}
+                        {{ user_reputation }}
+                    {% else %}
+                        0
+                    {% endif %} Likes
+                </div>
+            </div>
+        </div></a>
+    </div>
+    {% else %}
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link {% if "login" in request.path %}active{% endif %}" href="{% url 'accounts:login' %}">LOGIN</a>
+      </li>
+      <li class="nav-item {% if "signup" in request.path %}active{% endif %} mx-lg-4">
+        <a class="nav-link" style="width:6vw" href="{% url 'accounts:signup' %}">SIGNUP</a>
+      </li>
+    </ul>
+    {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <button type="button" class="logoutButton btn btn-secondary btn-circle">
+      <span class=" d-flex justify-content-center align-items-center" id="logout_icon">
+        <a href="/accounts/logout/"><img src="/media/logout.svg" alt=""></a>
+      </span>
+    </button>
+    {% endif %}
+
+    <div class="nav-item dropdown d-inline-block float-right ml-2">
+      <!-- <a class="nav-link dropdown-toggle pr-3 pr-lg-0 pr-xl-2" href="#" id="navbarDropdown" role="button" -->
+      <a class="nav-link pr-3 pr-lg-0 pr-xl-2" href="#" id="navbarDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="/media/gb.png" alt="">
+      </a>
+      <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="max-width: 70px; min-width: 0rem;">
+        <a class="dropdown-item" href="#"><img src="/media/spain.png" alt=""></a>
+        <a class="dropdown-item" href="#"><img src="/media/poland.png" alt=""></a>
+      </div> -->
+    </div>
+  </div>
+</nav>

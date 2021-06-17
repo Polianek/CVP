@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        {% load static %}
+        {% include "ponytoon/html_detail/head.html" %}
+        <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+            />
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/privacy.css' %}">
+</head>
+
+<body>
+    {% include "ponytoon/html_detail/navbar.html" %}
+
+<div id="privacy">
+    <h1 class="display-4">Privacy Policy</h1>
+    <ul>
+        <li>
+            If you want to contact us you can find contact details in "<a href="{% url 'contact' %}">Contact us</a>" page.
+        </li>
+        <li>
+            We collect your personal data in various ways:
+            <ul>
+                <li>directly from you, when you sign up for our services and when you browse our site</li>
+                <li>personal data we generate about you, e.g. personal data we use to authenticate you, or personal data in the form of your IP address</li>
+                <li>personal data we collect from third parties, e.g. personal data that helps us to improve our page operation such as loading time</li>
+            </ul>
+        </li>
+        <li>
+            When you register for a UnderATail account on underatail.com, we collect:
+            <ul>
+                <li>your nickname</li>
+                <li>your email address</li></li>
+            </ul>
+        </li>
+        <li>
+            When you use our site we may also use cookies or similar technology to collect extra data, including:
+            <ul>
+                <li>your IP address - a numerical code to identify your device, together with the country, region or city where you are based</li>
+                <li>your geolocation data - your IP address can be used to find information about the latitude, longitude, altitude of your device, its direction of travel, your GPS data and data about connection with local Wi-Fi equipment
+                information on how you interact with our services</li>
+                <li>your browsing history of the content you have visited on our site, including how you were referred to our sites via other websites</li>
+                <li>details of your computer, mobile, TV, tablet or other devices, for example, the unique device ID, unique vendor or advertising ID and browsers used to access our content</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+    <!-- Site footer -->
+{% include "ponytoon/html_detail/footer.html" %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+</body>
+</html>

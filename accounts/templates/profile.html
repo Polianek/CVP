@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% include "ponytoon/html_detail/head.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/mainProfile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/userImages.css' %}">
+</head>
+
+<body>
+{% include "ponytoon/html_detail/navbar.html" %}
+
+{% include "ponytoon/html_detail/alerts.html" %}
+
+  <section id="mainProfile">
+    <div class="container-fluid px-0 py-2">
+      <div class="d-flex justify-content-center justify-content-sm-end editProfileArea">
+        <div class="d-none d-sm-block editProfileBox mr-4 mt-4 pr-2 pr-sm-3 pt-2 pt-sm-3">
+          <button class="btn btn-outline-secondary py-1 edit-profile" onclick="window.location.href='{% url 'accounts:profile_edit' %}'">EDIT PROFILE</button>
+        </div>
+        <div class="d-sm-none editProfileBox my-4 py-2">
+          <button class="btn btn-outline-secondary py-1 edit-profile" onclick="window.location.href='{% url 'accounts:profile_edit' %}'">EDIT PROFILE</button>
+        </div>
+      </div>
+
+      <div class="mainProfileData">
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-center profileImg">
+              <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-center nicknameBox">
+              <span class="mt-4">{{ user.username }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-center speciesBox">
+              <span class="mt-4">{{ user.species }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-around w-100 mx-0 my-5 py-5">
+          <div class="col-1 d-none d-sm-block"></div>
+
+          <div class="col-4 col-sm-3 text-center pr-0 pr-sm-3">
+            <div class="row h-50">
+              <div class="col-12 ">Registered</div>
+            </div>
+            <div class="row h-50">{% load tz %}
+              <div class="col-12 data mt-3 px-0 px-sm-3">{{ user.date_joined|timezone:user.timezone.timezone_dj }}</div>
+            </div>
+          </div>
+
+          <div class="col-4 col-sm-3 text-center">
+            <div class="row h-50">
+              <div class="col-12">Reputation</div>
+            </div>
+            <div class="row h-50">
+              <div class="col-12 data mt-3">{% if reputation > 0 %}{{ reputation }}{% else %}0{% endif %}</div>
+            </div>
+          </div>
+
+          <div class="col-4 col-sm-3 text-center">
+            <div class="row h-50">
+              <div class="col-12"><span class="d-none d-sm-inline">Uploaded </span>Images</div>
+            </div>
+            <div class="row h-50">
+              <div class="col-12 data mt-3">{{ q }}</div>
+            </div>
+          </div>
+          <div class="col-1 d-none d-sm-block"></div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <div class="followArea">
+              <a href="#" class="button py-3">
+                <span class="followSpan">FOLLOW</span>
+              </a>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </section>
+
+{% if q > 0 %}
+  <section id="userImages">
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-center mb-4 mostLikedImageRow">
+        <div class="col-2 d-none d-sm-block"></div>
+        <div class="col-12 col-sm-4 d-flex justify-content-center image">
+          <div class="mostLiked">THE MOST LIKED<span class="d-inline d-sm-none d-md-inline"> IMAGE</span></div>
+          <img src="{{ MEDIA_URL }}{{ z.pic }}" alt="best user img">
+        </div>
+        <div class="col-12 col-sm-6 pl-4 mt-3 my-sm-2 d-flex flex-column justify-content-center">
+          <div class="d-none d-sm-block my-3">
+            Points: <span class="px-2 imagePoints">{% if z.reputation >= 0 %}+{% endif %}{{ z.reputation }}</span>
+          </div>
+          <div class="d-none d-sm-block my-3">
+            <span class="d-none d-md-inline">Upload date: </span><span class="px-0 px-md-2 uploadDate">{{ z.upload_date|timezone:u.timezone.timezone_dj|date:"d.m.Y" }}<span class="d-none d-md-inline"> {{ z.upload_date|timezone:u.timezone.timezone_dj|date:"h:m" }}</span></span>
+          </div>
+          <div class="d-none d-sm-block my-3">
+            <a href="/arts/{{ bestimgurl }}"><span class="d-none d-md-inline more">More</span></a>
+          </div>
+          <div class="d-flex d-sm-none justify-content-center">
+            <span class="px-2 uploadDate">{{ z.upload_date|timezone:u.timezone.timezone_dj|date:"d.m.Y" }}</span>
+          </div>
+          <div class="d-flex d-sm-none justify-content-center">
+            <span class="likeGrid px-3"><span class="heart"></span></span><span class="px-2 imagePoints">{% if z.reputation >= 0 %}+{% endif %}{{ z.reputation }}</span>
+          </div>
+        </div>
+      </div>
+
+    {% for image in images %}
+      <div class="row d-flex justify-content-center py-4 imageRow">
+        <div class="col-2 d-none d-sm-block"></div>
+        <div class="col-12 col-sm-4 d-flex justify-content-center image">
+          <a href="{% url 'arts_detail' arts=image.pic_name %}" style="cursor:default"><img src="{{ MEDIA_URL }}{{ image.pic }}" alt=""></a>
+        </div>
+        <div class="col-12 col-sm-6 pl-4 mt-3 my-sm-2 d-flex flex-column justify-content-center">
+          <div class="d-none d-sm-block my-3">
+            Points: <span class="px-2 imagePoints">{% if image.reputation >= 0 %}+{% endif %}{{ image.reputation }}</span>
+          </div>
+          <div class="d-none d-sm-block my-3">
+            <span class="d-none d-md-inline">Upload date: </span><span class="px-0 px-md-2 uploadDate">{{ image.upload_date|timezone:u.timezone.timezone_dj|date:"d.m.Y" }}<span class="d-none d-md-inline"> {{ image.upload_date|timezone:u.timezone.timezone_dj|date:"h:m" }}</span></span>
+          </div>
+          <div class="d-none d-sm-block my-3">
+            <a href="{% url 'arts_detail' arts=image.pic_name %}"><span class="d-none d-md-inline more">More</span></a>
+          </div>
+          <div class="d-flex d-sm-none justify-content-center">
+            <span class="px-2 uploadDate">{{ image.upload_date|timezone:u.timezone.timezone_dj|date:"d.m.Y" }}</span>
+          </div>
+          <div class="d-flex d-sm-none justify-content-center">
+            <span class="likeGrid px-3"><span class="heart"></span></span><span class="px-2 imagePoints">{% if image.reputation >= 0 %}+{% endif %}{{ image.reputation }}</span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+      <!-- <div class="row d-flex justify-content-center py-4 imageRow">
+        <div class="col-2 d-none d-sm-block"></div>
+        <div class="col-12 col-sm-4 col-4 d-flex justify-content-center image">
+          <img src="../imgs/2.jpg" alt="">
+        </div>
+        <div class="col-12 col-sm-6 col-4 pl-4 mt-3 my-sm-2 d-flex flex-column justify-content-center">
+          <div class="d-none d-sm-block my-3">
+            Points: <span class="px-2 imagePoints">17</span>
+          </div>
+          <div class="d-none d-sm-block my-3">
+            <span class="d-none d-md-inline">Upload date: </span><span class="px-0 px-md-2 uploadDate">8 kwietnia 2020<span class="d-none d-md-inline"> 14:56</span></span>
+          </div>
+          <div class="d-flex d-sm-none justify-content-center">
+            <span class="px-2 uploadDate">8 kwietnia 2020</span>
+          </div>
+          <div class="d-flex d-sm-none justify-content-center">
+            <span class="likeGrid px-3"><span class="heart"></span></span><span class="px-2 imagePoints">17</span>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </section>
+{% else %}
+    You have no best images, because you have not uploaded any images.
+{% endif %}
+
+{% include "ponytoon/html_detail/footer.html" %}
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- ADDITIONAL JS HERE -->
+  <script type="text/javascript" src="{% static 'personal/ptjs/universal.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+
+    .auth-wrap {
+        flex: 1 0 auto;
+    }
+
+.site-form{
+	box-shadow: 0 0 3px 3px #FF6347;
+	padding: 20px;
+	border-radius: 4px;
+	width: 35%;
+	margin: 0 auto 15px auto;
+	position: relative;
+}
+@media (max-width: 990px){
+    .site-form{
+        width: 80%;
+    }
+}
+
+.site-form input, .site-form textarea{
+	display: block;
+	padding: 6px;
+}
+
+.site-form textarea{
+    background: #323232;
+}
+
+.site-form input[type="file"]{
+	margin: 0;
+	padding: 0;
+}
+.form-title {
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+    color: #cfcfcf;
+    font-size: 2em;
+}
+.form-submit {
+    margin-top: 15px;
+}
+
+::-webkit-file-upload-button{
+	background: #ddd;
+	display: inline-block;
+	padding: 6px;
+	font-size: 1.1em;
+	margin: 5px 0 10px 0;
+	touch-action: manipulation;
+	cursor: pointer;
+	border: 0;
+	border-radius: 4px;
+	.btn;
+}
+
+.uploadcss {
+	background: #ddd;
+	display: inline-block;
+	padding: 6px;
+	font-size: 1.05em;
+	margin: 5px 0 10px 0;
+	cursor: pointer;
+}
+
+.site-form input[type="submit"]{
+	background: #3FB2E8;
+	border: 0;
+	border-radius: 4px;
+	margin: 10px 0 0 0;
+	font-size: 1.2em;
+	font-weight: 600;
+	color: #fff;
+	padding: 8px 10px;
+}
+
+.site-form select[multiple]{
+	min-height: 150px;
+	border: 0;
+	background: #323232;
+	box-sizing: border-box;
+    padding-top: 0;
+}
+.site-form select[multiple]:focus{outline: none !important;}
+.site-form option{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 2px;
+	color: #ddd;
+	font-weight: 600;
+}
+.site-form option:checked{}
+/* .site-form > ::-webkit-scrollbar{
+	width: 0;
+	background: transparent;
+} */
+.upload-form-correct{
+	width: 100%;
+	max-width: 100%;
+	max-height: 200px;
+}
+
+.foo2{color: #cfcfcf; font-weight: 600;}
+.form-wrap{float: left;}
+.nav-btns{float: left;}
+.navbar-btns{
+	border: 1px solid #fff;
+}
+.navbar-form .form-control{
+	min-width: 460px;
+}
+
+#Upload{
+	padding: 40px;
+	margin: 40px;
+	position: relative;
+}
+.UploadForm{
+	border: transparent 2px solid;
+	color: #fff;
+}
+.UploadForm > h1{text-align: center; background: #3FB2E8;}
+.UploadBtn{
+	background: #EC4141;
+	width: 90px;
+	height: 34px;
+	font-size: 15px;
+	font-weight: bold;
+	border-radius: 8px;
+	color: #fff;
+	margin-top: -2px;
+}
+.error-form{
+	margin-top: 25px;
+	text-align: center;
+	color: #cd5a91;
+	font-weight: 600;
+	font-size: 1.2em;
+}
+.pass-comm{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.pass-comm span a{
+    color: #9bd3fb;
+}
+.pass-comm span a:hover{
+    color: inherit;
+}

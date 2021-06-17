@@ -1,0 +1,9 @@
+{% autoescape off %}
+Hi {{ user.username }}!
+Welcome to UnderATail community.
+Please click the link to confirm your account registration.
+https://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}
+
+---
+UnderATail - https://underatail.com/
+{% endautoescape %}

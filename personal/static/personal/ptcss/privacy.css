@@ -1,0 +1,8 @@
+#privacy {
+    width: 75%;
+    margin: 10px auto;
+    flex: 1 0 auto;
+}
+#privacy > h1 {
+    text-align: center;
+}

@@ -1,0 +1,9 @@
+<form method="post" action="{% url 'arts_report' arts %}" autocomplete="off" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+	asd{{ url }}
+	{% if request.GET.next %}
+	<input type="hidden" name="next" value="{{ request.GET.next }}">
+	{% endif %}
+	<input type="submit" class="btn" value="Send">
+</form>

@@ -1,0 +1,307 @@
+#detail_view {
+}
+
+#detail_view_container {
+	padding: 0 0;
+	min-height: 600px;
+}
+
+#detail_view .imageDetailArea {
+	width: calc(100% - 250px);
+	overflow: auto;
+}
+
+#detail_view .container-fluid .banerBox {
+	position: relative;
+	width: 125px;
+}
+
+#detail_view .container-fluid .baner {
+	height: 600px;
+	width: 120px;
+	border: 1px solid red;
+
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.advertArea1 {
+}
+
+.advertBox1 {
+	height: 120px;
+	width: 600px;
+	border: 1px solid red;
+}
+
+#detail_view .choosedImageArea {
+	/* width: 80%; */
+	width: auto;
+	max-width: 100%;
+}
+
+#detail_view .choosedImageBox {
+	max-width: 120%;
+	height: auto;
+
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+#detail_view .choosedImageBox img {
+	object-fit: contain;
+	/* width: auto; */
+	max-width: 100%;
+	height: calc(100vh - 6rem);
+}
+
+#detail_view .choosedImagePanel {
+	height: auto;
+	width: 65vw;
+	padding: 10px;
+	margin: 0 auto !important;
+	position: relative;
+}
+
+#detail_view .countingArea:hover > .plus_and_counting {
+	opacity: 0.95;
+}
+
+#detail_view .plus_and_counting {
+	width: 3em;
+	height: 9.2em;
+
+	background: #304242;
+	box-sizing: border-box;
+	overflow: hidden;
+	border-radius: 0.6em;
+
+	opacity: 0.85;
+	transition: opacity .25s;
+}
+
+#detail_view .countingAreaMobile .plus_and_counting {
+	width: 8em;
+	height: 2.5em;
+}
+#detail_view .countingAreaMobile .plus_and_counting .count {
+	height: auto;
+}
+
+#detail_view .count {
+	width: 100%;
+	height: 3em;
+	background: #304242;
+}
+
+.count span {
+	width: 100%;
+}
+
+#detail_view .minus,
+#detail_view .plus {
+	font-size: 1.5em;
+}
+
+#detail_view .minus-hor {
+	margin-right: 30px;
+}
+#detail_view .plus-hor {
+	margin-right: 25px;
+}
+#detail_view .reputation-background {
+	background: #737373;
+	color: #fff;
+}
+.countingArea button {
+	width: 100%;
+	height: auto;
+
+	border-radius: 0;
+}
+
+/* //-----------------------delete area----------------- */
+.deleteArea #deleteAdmin,
+.deleteArea #cmcGroup {
+	width: 100%;
+	height: 2em;
+}
+.deleteArea button {
+	height: 100%;
+	line-height: 100%;
+}
+
+/* //-----------------------uploaded_and_visibility area----------------- */
+.uploaded_and_visibility #uploadedBy,
+.uploaded_and_visibility #visibility {
+	width: 100%;
+	height: 2em;
+}
+
+.uploaded_and_visibility #uploadedBy button {
+	border: 1px solid black;
+	color: #0e0e0e;
+	font-weight: 500;
+}
+
+.uploaded_and_visibility button {
+	height: 100%;
+	line-height: 100%;
+}
+
+#imageDetailRow {
+	position: relative;
+}
+
+.countingArea {
+	position: absolute;
+}
+
+.countingArea {
+	left: 2em;
+	top: 30%;
+}
+.deleteArea {
+	left: 2em;
+	bottom: 2em;
+	width: calc(100% - 121px);
+}
+.uploaded_and_visibility {
+	right: 2em;
+	bottom: 2em;
+}
+
+/* //------------------ M O B I L E ------------ */
+@media (max-width: 575.98px) {
+	#detail_view {
+		margin-top: 0em;
+	}
+
+	#detail_view_container {
+		position: relative;
+		min-height: 305px;
+		max-width: 100%;
+	}
+
+	#detail_view .container-fluid .banerBox {
+		display: none;
+	}
+
+	#detail_view .imageDetailArea {
+		width: 100%;
+		padding: 0 0;
+	}
+	#detail_view .choosedImageBox img {
+		height: auto;
+	}
+	#detail_view .choosedImagePanel {
+		width: 100vw;
+		margin: 0 !important;
+	}
+	.deleteAreaMobile {
+		position: absolute;
+		z-index: 2;
+
+		left: 1em;
+		bottom: 1em;
+
+		opacity: 0.9;
+	}
+
+	.countingAreaMobile button {
+		width: 100%;
+
+		border-radius: 0;
+	}
+
+	.countingAreaMobile {
+		position: absolute;
+		left: 50%;
+		top: 2.05em;
+		transform: translate(-50%, 0);
+
+		z-index: 2;
+
+		opacity: 0.9;
+	}
+
+	.uploaded_and_visibility_mobile {
+		position: absolute;
+		z-index: 2;
+
+		right: 1em;
+		bottom: 1em;
+
+		opacity: 0.9;
+	}
+}
+
+@media (max-width: 575.98px) {
+	#detail_view .advertBox1 {
+		width: 90vh !important;
+	}
+
+	#detail_view #imageDetailRow {
+		max-width: 100%;
+
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	#detail_view .choosedImageArea {
+		width: 100%;
+	}
+
+	#detail_view .choosedImagePanel .btn {
+		padding: .375rem .5rem;
+	}
+
+	#detail_view .deleteArea {
+		padding-top: 4.3em;
+	}
+
+	#detail_view .uploaded_and_visibility {
+		padding-top: 4.3em;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+	#detail_view .imageDetailArea {
+		width: 100%;
+	}
+
+	#detail_view .choosedImageArea {
+		width: 100%;
+	}
+	#detail_view .choosedImageBox img {
+		height: auto;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+	#detail_view .imageDetailArea {
+		width: 100%;
+	}
+
+	#detail_view .choosedImageArea {
+		width: 100%;
+	}
+	#detail_view .choosedImageBox img {
+		height: auto;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	#detail_view .choosedImageArea {
+		width: 100%;
+	}
+}
+
+/* ----------------- X S ----------------- */
+@media (max-width: 460px) {
+	#chooseImage {
+		margin-bottom: 0.1em !important;
+	}
+}

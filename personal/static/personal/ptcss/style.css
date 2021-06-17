@@ -1,0 +1,23 @@
+html,
+body {
+	height: 100%;
+}
+html :focus,
+body :focus {
+	outline: none;
+}
+html ::-moz-focus-inner,
+body ::-moz-focus-inner {
+	border: 0;
+}
+body {
+	margin: 0;
+	font-family: 'Lato', Roboto, "Helvetica Neue", sans-serif;
+	background: #222;
+	color: #cfcfcf;
+	display: flex;
+	flex-direction: column;
+}
+html {
+	overflow-x: hidden;
+}

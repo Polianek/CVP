@@ -1,0 +1,37 @@
+#WindowsContainer{
+	position: relative;
+	width: 1296px;
+	height: 1010px;
+	overflow-x: hidden;
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 225px;
+}
+
+.coll{
+	background: #fff;
+	border: 1px solid #fff;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	width: 182px;
+	height: 125px;
+	float: left;
+	margin-left: 35.3px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.coll:nth-child(7n+8){margin-left: 0;}
+.coll:first-child{margin-left: 0;}
+#WindowsContainer > .cntainer > li:nth-child(7n+8){margin-left: 0;}
+#WindowsContainer > .cntainer > li:first-child{margin-left: 0;}
+
+#WindowsContainer > .cntainer > li{width: 182px; margin-left: 35.3px; padding: 0; text-align: left; float: left; padding-top: 5px;}
+#WindowsContainer > .cntainer > li > .colltext{width: 182px; height: 72px; float: left;}
+.coll1{background-image: url('ponytoonimg/th.png')}
+.coll2{background-image: url('ponytoonimg/th2.png')}
+
+.coll-content{display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;}

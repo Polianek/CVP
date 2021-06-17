@@ -1,0 +1,15 @@
+#terms {
+    width: 75%;
+    margin: 10px auto;
+    flex: 1 0 auto;
+}
+#terms > h1 {
+    text-align: center;
+}
+#terms > ul > li {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+#terms > ul > li > ul > li {
+    list-style-type: none;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load static %}
+	<title>PonyToon site</title>
+	<link href="{% static 'personal/css/bootstrap.css' %}" rel="stylesheet">
+	<link href="{% static 'personal/css/bootstrap-theme.css' %}" rel="stylesheet">
+	<link href="{% static 'personal/ponytoonstyle.css' %}" rel="stylesheet">
+	<link href="{% static 'personal/ponytoonstyle-mobile.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+	<!-- Navbar -->
+	{% include "ponytoon/html_detail/navbar.html" %}
+	<!-- End navbar -->
+
+
+<!-- Footer -->
+{% include "ponytoon/html_detail/footer2.html" %}
+<!-- End footer -->
+
+
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="{% static 'personal/js/bootstrap.min.js' %}"></script>
+	<script>window.jQuery || document.write('<script src="{% static 'personal/assets/js/vendor/jquery.min.js' %}"><\/script>')</script>
+	<script src="{% static 'personal/assets/js/docs.min.js' %}"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="{% static 'personal/assets/js/ie10-viewport-bug-workaround.js' %}"></script>
+  </body>
+</html>

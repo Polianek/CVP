@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+        {% load static %}
+        {% include "ponytoon/html_detail/head.html" %}
+        <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+            />
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/detail_view.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/belowDetails.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/form.css' %}">
+</head>
+
+<body>
+	    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+    {% include "ponytoon/html_detail/navbar.html" %}
+
+<section class="mt-lg-4" id="detail_view">
+
+    <div class="container-fluid d-flex flex-row" id="detail_view_container">
+
+        <!-- <div class="d-none d-lg-block banerBox">
+            <div class="baner d-flex" id="baner1"></div>
+        </div> -->
+
+        <div class="container-fluid mx-auto imageDetailArea">
+            <div class="row h-100 d-flex align-items-center px-0 px-lg-3" id="imageDetailRow">
+                <div class="mx-auto px-0 px-sm-1 choosedImageArea">
+                    <div class="choosedImageBox">
+                        <img src="{{ MEDIA_URL }}{{ upload.pic }}" alt="" />
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-between mt-1 mt-sm-0 mb-4 mx-4 mx-sm-3 choosedImagePanel">
+
+
+                    <!-- ----------------- M O B I L E ----------------- -->
+
+                    <div class="d-block uploaded_and_visibility">
+                        <div class="my-2 text-right">Uploaded by:</div>
+
+                        <div class="my-2 text-right" id="uploadedBy">
+                            <button type="button" class="btn btn-success ml-auto" onclick="window.location.href='{% url 'accounts:profileid' id=upload.author.id %}'">
+                                {{ upload.author }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- --------------------------------------------------- -->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="d-none d-lg-block banerBox">
+            <!-- <div class="baner" id="baner2"></div> -->
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid" id="belowDetails">
+    <section class="mx-auto" id="description">
+		<form class="site-form" action="{% url 'arts_edit' arts %}" method="post" autocomplete="off" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% load widget_tweaks %}
+			<div class="form-group">
+				<label>Description</label>
+				{% render_field form.title class+="form-control" %}
+			</div>
+			<div class="form-group">
+				<label>Tags</label>
+				{% render_field form.tags class+="form-control" %}
+			</div>
+			<input type="submit" class="btn" value="Save">
+		</form>
+    </section>
+</div>
+
+<hr class="mt-5" id="hrAboveComments" />
+
+
+    <!-- Site footer -->
+{% include "ponytoon/html_detail/footer.html" %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+
+	<script>
+    var mediaQuery = window.matchMedia('(min-width: 902px)');
+    autoCTRL(mediaQuery);
+    mediaQuery.addListener(autoCTRL);
+    function autoCTRL(ac) {
+        if (mediaQuery.matches){
+    	$("select").mousedown(function(e){
+    		e.preventDefault();
+
+    		var select = this;
+    		var scroll = select.scrollTop;
+
+    		e.target.selected = !e.target.selected;
+
+    		setTimeout(function(){select.scrollTop = scroll;}, 0);
+
+    		$(select).focus();
+    	}).mousemove(function(e){e.preventDefault()});
+        }
+    }
+	</script>
+</body>
+</html>

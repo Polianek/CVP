@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% include "ponytoon/html_detail/head.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/form.css' %}">
+</head>
+<body style="background: #333; color: #fff;">
+    <!-- {% if reports %}
+    <div style="height: auto; width: 450px; border: 1px #fff solid; padding: 5.5px;">
+        {% for report in reports %}
+        {{ report.user }} reported <b>{% if report.relate_comment %}{{ report.relate_comment }} comment{% else %}{{ report.relate }} art{% endif %}</b> for {{ report.category }} &nbsp;&nbsp; {{ report.contents }}<br>
+        {% endfor %}
+    </div>
+    {% endif %} -->
+
+    <table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nickname</th>
+            <th scope="col">reported</th>
+            <th scope="col">for</th>
+            <th scope="col">Context</th>
+            <th scope="col">Verified?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for report in reports %}
+        <tr>
+            <th scope="row">{{ report.pk }}</th>
+            <td>{{ report.user }}</td>
+            <td>{% if report.relate_comment %}{{ report.relate_comment }} comment{% else %}{{ report.relate }} art{% endif %}</td>
+            <td>{{ report.category }}</td>
+            <td>{{ report.contents|truncatechars:"150" }}</td>
+            <td>{% if report.verified %}<span class="font-weight-bold text-success">Yes</span>{% else %}<span class="font-weight-bold text-danger">No</span>&nbsp;&nbsp; - &nbsp;&nbsp;<a href="#">Verify</a>{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</body>
+</html>

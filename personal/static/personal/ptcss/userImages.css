@@ -1,0 +1,70 @@
+#userImages {
+	background: #262626;
+}
+#userImages .imageRow {
+	font-size: 1.25em;
+	letter-spacing: 0.04em;
+}
+#userImages .imageRow:last-of-type {
+	padding-bottom: 3.5em !important;
+}
+#userImages .mostLikedImageRow {
+	font-size: 1.25em;
+	letter-spacing: 0.04em;
+	padding-top: 5em;
+	padding-bottom: 5em;
+	background: #222;
+}
+#userImages .mostLiked {
+	position: absolute;
+	top: -1.5em;
+	white-space: nowrap;
+}
+#userImages .image {
+	position: relative;
+	max-height: 30em;
+}
+#userImages .image img {
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 0.85em;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+#userImages .likeGrid {
+	position: relative;
+}
+#userImages .heart {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png) no-repeat;
+	cursor: pointer;
+	zoom: 0.8;
+}
+#userImages .heart-blast {
+	background-position: -2800px 0;
+	transition: background 1s steps(28);
+}
+@media (max-width: 575.98px) {
+	#userImages .mostLikedImageRow {
+		padding-bottom: 3em;
+	}
+}
+@media (min-width: 768px) {
+	#userImages .uploadDate {
+		white-space: nowrap;
+	}
+}
+#userImages .more {
+	color: #cfcfcf !important;
+}
+#userImages .more:hover {
+	color: #007bff !important;
+}
+#userImages a {
+	text-decoration: none;
+}

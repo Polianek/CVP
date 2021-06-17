@@ -1,0 +1,166 @@
+a {
+	color: inherit;
+}
+#tiles {
+	margin-top: 2em;
+	flex: 1 0 auto;
+}
+
+#tiles .container-fluid {
+	width: 75%;
+}
+
+#tiles .card {
+	position: relative;
+	background: transparent;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+#tiles .testBox {
+	background: rgba(67, 182, 213, 0.3);
+	color: rgba(255, 255, 255, 0.8);
+	position: absolute;
+	/* // left: calc(100% - 3.7em); */
+	right: 0.6em;
+	top: 0.6em;
+
+	font-size: 1.2em;
+
+	padding: 0.3em 1em;
+	border-radius: 0.85em;
+
+	cursor: pointer;
+}
+
+#tiles .likeBox {
+	position: absolute;
+	left: 0.6em;
+	/* // top: calc(100% - 3.7em); */
+	bottom: 0.6em;
+
+	width: 6.5em;
+}
+
+#tiles .like {
+	/* background: rgba(67, 182, 213, 0.3); */
+
+	width: 1.7em;
+	height: 1.7em;
+	border-radius: 50%;
+	text-align: center;
+
+	font-size: 1.25em;
+}
+
+#tiles .testBox {
+	font-size: 1em;
+	padding: .15em .5em;
+}
+
+#tiles .likesAmount {
+	font-size: 1em;
+	height: auto;
+	padding: .15em .5em;
+}
+
+#tiles .likesAmount {
+	background: rgba(143, 143, 141, 0.5);
+	height: 35px;
+	font-size: 1.35em;
+	border-radius: 0.8em;
+}
+
+/* // TURN OFF BUTTON HIGHLIGHT */
+#tiles .btn:focus,
+#tiles .btn:active {
+	outline: none !important;
+	box-shadow: none;
+}
+
+/* //DETAILS ON HOVER */
+#tiles .card > div {
+	opacity: 0;
+	transition: opacity .3s;
+}
+
+#tiles .card:hover > div {
+	opacity: 1;
+}
+
+/* // ---------------- H E A R T ---------------- */
+#tiles .heart {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png) no-repeat;
+	cursor: pointer;
+
+	zoom: 0.8;
+}
+#tiles .heart-blast {
+	background-position: -2800px 0;
+	transition: background 1s steps(28);
+}
+
+/* // ------------------------------------------------ */
+
+/* //------------------ M O B I L E ------------ */
+@media (max-width: 575.98px) {
+	#tiles .testBox {
+		font-size: 1em;
+		padding: .15em .5em;
+	}
+
+	#tiles .likesAmount {
+		font-size: 1em;
+		height: auto;
+		padding: .15em .5em;
+	}
+	#tiles .container-fluid {
+		width: 100%;
+	}
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+	#tiles .container-fluid {
+		width: 88%;
+	}
+
+	#tiles .testBox {
+		right: 0.2em;
+		top: 0.2em;
+
+		display: none;
+	}
+
+	#tiles .likeBox {
+		left: 0.5em;
+		bottom: 0.2em;
+	}
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+	#tiles .container-fluid {
+		width: 95%;
+	}
+
+	#tiles .testBox {
+		right: 0.4em;
+		top: 0.4em;
+	}
+
+	#tiles .likeBox {
+		left: .5em;
+		bottom: 0.3em;
+	}
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}

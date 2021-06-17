@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        {% load static %}
+        {% include "ponytoon/html_detail/head.html" %}
+        <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+            />
+        <link rel="stylesheet" type="text/css" href="{% static 'personal/ptcss/faq.css' %}">
+</head>
+
+<body>
+    {% include "ponytoon/html_detail/navbar.html" %}
+<div id="faq">
+    <div class="card faq-question">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed faq-question-btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Is it safe to use UnderATail?
+                </button>
+            </h5>
+        </div>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faq">
+        <div class="card-body faq-answear">
+            UnderATail is really safe in use, you have nothing to worry about. We do not use aggressive popups or ads on our website. We keep your data and privacy safe too by improving security everyday.<br>
+        </div>
+    </div>
+
+    <div class="card faq-question">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed faq-question-btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Is it free?
+                </button>
+            </h5>
+        </div>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faq">
+        <div class="card-body faq-answear">
+            Yes, using UnderATail is fully free in usage.<br>
+        </div>
+    </div>
+
+    <div class="card faq-question">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link faq-question-btn" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                Something isn't working. How can I report it?
+                </button>
+            </h5>
+        </div>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faq">
+        <div class="card-body faq-answear">
+            We are still in development statement so sometimes you can meet some problems. We are fixing them as fast as we can but depending on the issue it may take few hours or days. You can notify us with your problem via e-mail:&nbsp;<b>support&#64;underatail.com</b>
+        </div>
+    </div>
+
+    <!-- Missing 4th faq here -->
+
+    <div class="card faq-question">
+        <div class="card-header" id="headingFive">
+            <h5 class="mb-0">
+                <button class="btn btn-link faq-question-btn" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                I get error 500 while uploading the file. Why?
+                </button>
+            </h5>
+        </div>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#faq">
+        <div class="card-body faq-answear">
+            You are probably trying to upload a file in a format other than what we support at the moment, or the file is larger than 25MB. Try to save your file in one of the following formats or compress your file to reduce its size:
+            <br>.png .jpg .jpeg .webp .gif
+            <br>If, despite the correct extension, you cannot upload the file, contact us at <b>support&#64;underatail.com</b>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Site footer -->
+{% include "ponytoon/html_detail/footer.html" %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+</body>
+</html>

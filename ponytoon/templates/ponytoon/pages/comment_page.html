@@ -1,0 +1,80 @@
+{% load el_pagination_tags %}
+{% lazy_paginate 5 comments %}
+{% for comment in comments %}
+<li class="c1">
+    <div class="row mw-100 mx-auto">
+    <div class="user_username">
+        <a href="{% url 'accounts:profileid' comment.author.id %}"><span class="user">{{ comment.author }}</span></a>
+        {% if comment.author.id == upload.author.id %}<span style="border: 1px solid #444; border-radius: 5px; background-color: #444; padding: 0 3px 0 3px; margin-left: 3px; mouse">author</span>{% endif %}
+    </div>
+    <div class="user_avatar">
+        <img
+            src="{{ MEDIA_URL }}{{ comment.author.avatar }}"
+        />
+    </div>
+    <!-- the comment body -->
+    <div class="comment_body">
+        <p>
+            {{ comment.contents }}
+        </p>
+    </div>
+    <!-- comments toolbar -->
+    <div class="ml-auto comment_toolbar">
+        <!-- inc. date and time -->
+        <div class="comment_details">
+            <ul>
+                <li>
+                    {% if request.user.is_authenticated %}
+                    <form method="post" class="rep-pos-com" data-pk="{{ comment.pk }}">{% csrf_token %}
+                        <span class="filler">
+                            <button type="submit" class="heart
+                            {% if comment.votes.all.exists %}heart-blast{% endif %}
+                            " style="border: none;"></button>
+                        </span>
+                        <input type="hidden" name="comment_pk" value="{{ comment.pk }}">
+                    </form>
+                    {% else %}
+                    <span class="filler">
+                        <span type="submit" class="heart" style="border: none;"></span>
+                    </span>
+                    {% endif %}
+                </li>
+                <li>
+                    <span class="love_amt" data-pk="{{ comment.pk }}">{{ comment.points }}</span>
+                </li>
+            </ul>
+        </div>
+        <!-- inc. share/reply and love -->
+        <div class="comment_tools">{% load tz %}
+            <ul>{% if request.user.is_authenticated %}
+                    <li>{{ comment.upload_date|timezone:request.user.timezone.timezone_dj|date:"h:m" }}</li>
+                    <li>{{ comment.upload_date|timezone:request.user.timezone.timezone_dj|date:"d/m/Y" }}</li>
+                {% else %}
+                    <li>{{ comment.upload_date|date:"h:m" }}</li>
+                    <li>{{ comment.upload_date|date:"d/m/Y" }}</li>
+                {% endif %}
+                <!-- <li>
+                    <a href="{% url 'accounts:profileid' comment.author.id %}"><span class="user">{{ comment.author }}</span></a>
+                    {% if comment.author.id == upload.author.id %}<span style="border: 1px solid #444; border-radius: 5px; background-color: #444; padding: 0 3px 0 3px; margin-left: 3px; mouse">author</span>{% endif %}
+                </li> -->
+                {% if request.user.is_authenticated %}
+                {% if request.user.id == comment.author.id %}
+                <li>
+                    <span class="edit">
+                        edit
+                    </span>
+                </li>
+                {% endif %}
+                <li>
+                    <span class="report">
+                        <a href="{% url 'arts_report_comment' number=comment.pk arts=upload.pic_name %}">report</a>
+                    </span>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+</li>
+{% endfor %}
+{% show_more "Show more" "Searching for comments.." %}
